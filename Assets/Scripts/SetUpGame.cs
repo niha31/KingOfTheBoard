@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class SetUpGame : MonoBehaviour
+public static class SetUpGame
 {
-    public GameObject map;
+    private static int noOfPlayers = -1;
 
-    // Start is called before the first frame update
-    void Start()
+    public static int NoOfPlayers
     {
-
+        get
+        {
+            return noOfPlayers;
+        }
+        set
+        {
+            noOfPlayers = value;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

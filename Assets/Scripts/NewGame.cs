@@ -9,19 +9,21 @@ public class NewGame : MonoBehaviour
 {
     public Button backButton;
     public Button playButton;
+    public Button twoPlayerButton;
 
     public Canvas thisCanvas;
     public Canvas MainMenuCanvas;
+    
     // Start is called before the first frame update
     void Start()
     {
         backButton.onClick.AddListener(BackButtonClicked);
         playButton.onClick.AddListener(PlayButtonClicked);
-
+        twoPlayerButton.onClick.AddListener(TwoPlayerButtonClicked);
     }
 
-    // Update is called once per frame
-    void Update()
+// Update is called once per frame
+void Update()
     {
         
     }
@@ -32,8 +34,23 @@ public class NewGame : MonoBehaviour
         thisCanvas.gameObject.SetActive(false);
     }
 
+    void TwoPlayerButtonClicked()
+    {
+        SetUpGame.NoOfPlayers = 2;
+    }
+
     void PlayButtonClicked()
     {
-        SceneManager.LoadScene("GameScene");
+        if(SetUpGame.NoOfPlayers == -1)
+        {
+            return;
+        }
+        else
+        {
+            SceneManager.LoadScene("GameScene");
+        }
+
     }
+
+    
 }
