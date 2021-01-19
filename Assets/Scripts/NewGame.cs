@@ -10,6 +10,8 @@ public class NewGame : MonoBehaviour
     public Button backButton;
     public Button playButton;
     public Button twoPlayerButton;
+    public Button threePlayerButton;
+    public Button fourPlayerButton;
 
     public Canvas thisCanvas;
     public Canvas MainMenuCanvas;
@@ -20,10 +22,13 @@ public class NewGame : MonoBehaviour
         backButton.onClick.AddListener(BackButtonClicked);
         playButton.onClick.AddListener(PlayButtonClicked);
         twoPlayerButton.onClick.AddListener(TwoPlayerButtonClicked);
+        threePlayerButton.onClick.AddListener(ThreePlayerButtonClicked);
+        fourPlayerButton.onClick.AddListener(FourPlayerButtonClicked);
+
     }
 
-// Update is called once per frame
-void Update()
+    // Update is called once per frame
+    void Update()
     {
         
     }
@@ -37,6 +42,15 @@ void Update()
     void TwoPlayerButtonClicked()
     {
         SetUpGame.NoOfPlayers = 2;
+    }
+    void ThreePlayerButtonClicked()
+    {
+        SetUpGame.NoOfPlayers = 3;
+
+    }
+    void FourPlayerButtonClicked()
+    {
+        SetUpGame.NoOfPlayers = 4;
     }
 
     void PlayButtonClicked()

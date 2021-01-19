@@ -19,7 +19,7 @@ public static class Players
         }
         set
         {
-            numberOfPlayers = value;
+            numberOfPlayers = value - 1;
         }
     }
 
@@ -44,7 +44,7 @@ public static class Players
         set
         {
             currentPlayer = value;
-            if(currentPlayer >= numberOfPlayers)
+            if(currentPlayer > numberOfPlayers)
             {
                 currentPlayer = 0;
             }

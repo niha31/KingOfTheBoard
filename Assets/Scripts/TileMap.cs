@@ -71,7 +71,7 @@ public class TileMap : MonoBehaviour
         Players.NumberOfPlayers = SetUpGame.NoOfPlayers;
         GameObject[] allPlayer = null;
 
-        for (int i = 0; i < Players.NumberOfPlayers; i++)
+        for (int i = 0; i <= Players.NumberOfPlayers; i++)
         {
             Vector3 pos = new Vector3(Random.Range(0, 10), Random.Range(0, 10), 0);
 
