@@ -12,6 +12,8 @@ public class TouchInputs : MonoBehaviour
     public Camera mainCamera;
     public CameraScript cameraScript;
 
+    public GameObject map;
+
     public Text gameStatus;
 
     public Canvas mainMenuConformation;
@@ -34,39 +36,31 @@ public class TouchInputs : MonoBehaviour
     void Update()
     {
         if (!gamePaused)
-        {
-            if (Players.NumberOfMovement[Players.CurrentPlayer] > 0)
-            {
-                gameStatus.text = "Player " + (Players.CurrentPlayer + 1) + "'s turn.";
-            }
-
-
-            if (Input.touchCount > 0)
+        {           
+            if (Input.touchCount > 0 && Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().GetCanMove())
             {
                 Ray ray = mainCamera.ScreenPointToRay(Input.GetTouch(0).position);
                 RaycastHit hit;
                 Physics.Raycast(ray, out hit);
 
-                if (hit.collider.gameObject.tag == "Map" && Players.NumberOfMovement[Players.CurrentPlayer] > 0)
+                if (hit.collider.gameObject.tag == "Map")
                 {
-                    Debug.Log("map tile touched");
+                    map.GetComponent<TileMap>().GenoratePathTo((int)hit.transform.position.x, (int)hit.transform.position.y);
+                    
+                    Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().MoveNextTile();
 
-                    Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().MovePlayerTo(hit.transform.position.x, hit.transform.position.y);
+                    //Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().MovePlayerTo(hit.transform.position.x, hit.transform.position.y);
 
-                    Players.NumberOfMovement[Players.CurrentPlayer] -= 1;
+                    //Players.NumberOfMovement[Players.CurrentPlayer] -= 1;
 
                 }
-                else if(hit.collider.gameObject.tag == "UI")
-                {
-                    Debug.Log("UI hit");
-                }
-                else
-                {
-                    Debug.Log("other obj touched not map");
-                }
-
             }
-            else if (Players.NumberOfMovement[Players.CurrentPlayer] == 0)
+
+            if(Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().GetCanMove())
+            {
+                gameStatus.text = "Player " + (Players.CurrentPlayer + 1) + "'s turn.";
+            }
+            else
             {
                 gameStatus.text = "Out of Moves";
             }
@@ -77,7 +71,7 @@ public class TouchInputs : MonoBehaviour
 
     void EndTurnButtonClicked()
     {
-        Players.NumberOfMovement[Players.CurrentPlayer] = 1;
+        Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().SetCanMove(true);
         int current = Players.CurrentPlayer;
         Players.CurrentPlayer = current + 1;
 

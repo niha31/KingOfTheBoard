@@ -22,8 +22,6 @@ public class CameraScript : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         cameraObj.transform.position = new Vector3(x, y, -10);
-        Debug.Log(Camera.main.transform.position);
-        Debug.Log("move camera");
     }
 
 
