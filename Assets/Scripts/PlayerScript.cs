@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -8,16 +9,20 @@ public class PlayerScript : MonoBehaviour
     public Vector3 pos;
 
     public TileMap map;
+    public List<Vector2> tilesOwned;
+    public int techPoints = 0;
 
     public List<Node> currentPath = null;
 
     int movement = 2;
     bool canMove = true;
 
+    public Image health;
 
     void Start()
     {
         pos = transform.position;
+        health.GetComponent<HealthBarScript>().SetHealthBarValue(1.0f);
     }
 
     public void MovePlayerTo(float x, float y)
@@ -44,8 +49,7 @@ public class PlayerScript : MonoBehaviour
                 Vector3 start = new Vector3(currentPath[currNode].x, currentPath[currNode].y, -1.0f);
                 Vector3 end = new Vector3(currentPath[currNode + 1].x, currentPath[currNode + 1].y, -1.0f);
 
-                Debug.DrawLine(start, end, Color.red);
-                Debug.Log("Update");
+
                 currNode++;
             }
         }
@@ -53,7 +57,11 @@ public class PlayerScript : MonoBehaviour
 
     public void MoveNextTile()
     {
-        float remainingMovement = movement;
+        float remainingMovement = 0;
+        if (remainingMovement <= 0)
+        {
+            remainingMovement = movement;
+        }
 
         while (remainingMovement > 0)
         {
@@ -85,5 +93,14 @@ public class PlayerScript : MonoBehaviour
     public bool GetCanMove()
     {
         return canMove;
+    }
+
+    public void CalculatePointsEarned()
+    {
+        int[,] tileMap = map.GetTiles();
+        for (int i = 0; i < tilesOwned.Count; i++)
+        {
+            techPoints = techPoints +  map.tileTypes[tileMap[(int)tilesOwned[i].x, (int)tilesOwned[i].y]].harvestPoints;
+        }
     }
 }

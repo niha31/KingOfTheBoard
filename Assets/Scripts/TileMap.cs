@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class TileMap : MonoBehaviour
 {
+    int mapSizeX = 10;
+    int mapSizeY = 10;
+
     public TileType[] tileTypes;
     int[,] tiles;
+    public int[,] tileOwnedBy;
     Node[,] graph;
-
 
     public GameObject playerVisualprefab;
     public GameObject castleVisualPrefab;
-
-    int mapSizeX = 10;
-    int mapSizeY = 10;
 
     public Material material1;
     public Material material2;
@@ -25,6 +25,7 @@ public class TileMap : MonoBehaviour
 
     void Start()
     {
+        tileOwnedBy = new int[mapSizeX, mapSizeY];
 
         materials = new Material[4];
         materials[0] = material1;
@@ -34,27 +35,74 @@ public class TileMap : MonoBehaviour
 
         Players.playerColours = materials;
 
-
         tiles = new int[mapSizeX, mapSizeY];
 
-        int maxAmountOfTileType2 = 20;
-        int currentAmountOfTileType2 = 0;
-        
+        int maxAmountOfMountinTile = 10;
+        int currentAmountOfMountinTile = 0;
+
+        int maxAmountOfForestTIle = 10;
+        int currentAmountOfForestTile = 0;
+
+        int maxAmountOfMineTIle = 10;
+        int currentAmountOfMineTile = 0;
+
+        int maxAmountOfFarmTile = 10;
+        int CurrentAmountOfFarmTile = 0;
+
+        int maxAmountOfAnimalTile = 10;
+        int CurrentAmountOfAnimalTile = 0;
+
         for (int x = 0; x < mapSizeX; x++)
         {
             for (int y = 0; y < mapSizeY; y++)
             {
-                int tile = Random.Range(0, 2);                
+                int tile = Random.Range(2, 15);
 
-                if (tile == 1 && currentAmountOfTileType2 < maxAmountOfTileType2)
+                //mountine tile == 2
+                if (tile == 2 && currentAmountOfMountinTile < maxAmountOfMountinTile)
                 {
                     tiles[x, y] = tile;
-                    currentAmountOfTileType2++;
+                    currentAmountOfMountinTile++;
+                }
+                //forest tile == 3
+                else if (tile == 3 && currentAmountOfForestTile < maxAmountOfForestTIle)
+                {
+                    tiles[x, y] = tile;
+                    currentAmountOfForestTile++;
+                }
+                //mine tile == 4
+                else if (tile == 4 && currentAmountOfMineTile < maxAmountOfMineTIle)
+                {
+                    tiles[x, y] = tile;
+                    currentAmountOfMineTile++;
+                } 
+                //farm tile == 5
+                else if(tile == 5 && CurrentAmountOfFarmTile < maxAmountOfFarmTile)
+                {
+                    tiles[x, y] = tile;
+                    CurrentAmountOfFarmTile++;
+                }
+                //animal tile == 6
+                else if(tile == 6 && CurrentAmountOfAnimalTile < maxAmountOfAnimalTile)
+                {
+                    tiles[x, y] = tile;
+                    CurrentAmountOfAnimalTile++;
                 }
                 else
                 {
+                    //grass block == 1
+                    tiles[x, y] = 1;
+                }
+
+                if (x == 0 && y == 0 || x == 9 && y == 9 || x == 0 && y == 9 || x == 9 && y == 0)
+                {
+                    //corner tiles are always default = 0
                     tiles[x, y] = 0;
                 }
+
+
+                tileOwnedBy[x, y] = -1;
+
             }
         }
 
@@ -62,8 +110,12 @@ public class TileMap : MonoBehaviour
         PlacePlayersOnMap();
         Players.SetPlayerColours();
         GenoratePathFindingGraph();
-        Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().map = this;
+        Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().CalculatePointsEarned();
+    }
 
+    public int[,] GetTiles()
+    {
+        return tiles;
     }
 
     public Vector3 TileCoordToWorldCoord(int x, int y)
@@ -127,13 +179,13 @@ public class TileMap : MonoBehaviour
         Players.AllPlayers = allPlayer;
         Players.CurrentPlayer = 0;
 
-        //Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().pos = Players.AllPlayers[Players.CurrentPlayer].transform.position;
-
         Camera.main.GetComponent<TouchInputs>().SetGameCameraAtStart();
 
         for(int i = 0; i <= Players.NumberOfPlayers; i++)
         {
             Players.AllPlayers[i].GetComponent<PlayerScript>().map = this;
+
+            Players.AllPlayers[i].GetComponent<PlayerScript>().tilesOwned.Add(Players.AllPlayers[i].GetComponent<PlayerScript>().pos);
         }
     }
 

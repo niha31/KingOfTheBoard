@@ -9,4 +9,8 @@ public class TileType
     public GameObject tileVisualPrefab;
 
     public float movementCost = 1;
+
+    public bool harvestable;
+    public string techNeeded;
+    public int harvestPoints;
 }
