@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PlayerScript">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEIAAACAkACAACAEAAIgACAAAAAAAEIACAQAAAAg=</HashCode>
+      <FileName>Assets\Scripts\PlayerScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Players">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAABAAAAQAAIAEIAAAACAAIAAgAKAAAA=</HashCode>
+      <FileName>Assets\Scripts\Players.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TechTree">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBEAICgCAAAQAAgABgQAAAAgQAEgAAQAACABAAAAA=</HashCode>
+      <FileName>Assets\Scripts\TechTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tech">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAxAAAAAECAAAAAIAAAAAAAAAAAEAAAAAQBQAIgIgAA=</HashCode>
+      <FileName>Assets\Scripts\Tech.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TileMap">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQBAAAAAACAACAAAAQAAAAAECgJAICABAAAQgABAAAA=</HashCode>
+      <FileName>Assets\Scripts\TileMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TileType">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAQEAAAAAAAAAAAAAAEAAEAAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\TileType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Node">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClickableTile">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAgAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ClickableTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraScript">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\CameraScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
