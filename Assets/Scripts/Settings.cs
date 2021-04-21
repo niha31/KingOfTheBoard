@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.Audio;
 
 public class Settings : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Settings : MonoBehaviour
 
     public Canvas thisCanvas;
     public Canvas MainMenuCanvas;
+
+    public AudioMixer audioMixer;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +29,10 @@ public class Settings : MonoBehaviour
     {
         MainMenuCanvas.gameObject.SetActive(true);
         thisCanvas.gameObject.SetActive(false);
+    }
+
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
     }
 }

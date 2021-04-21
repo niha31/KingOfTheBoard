@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class TouchInputs : MonoBehaviour
 {
-    public Camera mainCamera;
+    Camera mainCamera;
     public CameraScript cameraScript;
 
     public GameObject map;
@@ -23,7 +23,7 @@ public class TouchInputs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame

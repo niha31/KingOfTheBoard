@@ -17,12 +17,9 @@ public class PlayerScript : MonoBehaviour
     int movement = 2;
     bool canMove = true;
 
-    public Image health;
-
     void Start()
     {
         pos = transform.position;
-        health.GetComponent<HealthBarScript>().SetHealthBarValue(1.0f);
     }
 
     public void MovePlayerTo(float x, float y)
@@ -36,7 +33,7 @@ public class PlayerScript : MonoBehaviour
         return pos;
     }
 
-    public void Update()
+    void Update()
     {
         if(currentPath != null)
         {
@@ -102,5 +99,11 @@ public class PlayerScript : MonoBehaviour
         {
             techPoints = techPoints +  map.tileTypes[tileMap[(int)tilesOwned[i].x, (int)tilesOwned[i].y]].harvestPoints;
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        gameObject.GetComponentInChildren<HealthBarScript>().health = gameObject.GetComponentInChildren<HealthBarScript>().health - damage;
+        Debug.Log(gameObject.GetComponentInChildren<HealthBarScript>().health);
     }
 }

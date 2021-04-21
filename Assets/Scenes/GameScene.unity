@@ -1675,7 +1675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a4f4d8ccd68134eb0305001d2d1863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 963194227}
   cameraScript: {fileID: 963194232}
   map: {fileID: 1131191665}
   gameStatus: {fileID: 1810605334}
@@ -1701,6 +1700,10 @@ MonoBehaviour:
   mainMenuButton: {fileID: 1336207092}
   techTreeButton: {fileID: 1770858919}
   harvestButton: {fileID: 1509354048}
+  attackButton: {fileID: 1571276859}
+  transparentAttackButton: {fileID: 21300000, guid: 55ee83c2e4e015b4d977c1c9873d2828, type: 3}
+  solidAttackButton: {fileID: 21300000, guid: 131e787af2eec2f4aad8512a92954f48, type: 3}
+  AttackbuttonActive: {fileID: 21300000, guid: 58028ba790af5564bb58553ff6c6b66a, type: 3}
   yesButton: {fileID: 1377100368}
   noButton: {fileID: 1835925092}
   harvesterVisualPrefab: {fileID: 4335660989357362619, guid: 5c382e61dd0ba6d4b986ce4188b20841, type: 3}
@@ -3168,7 +3171,7 @@ GameObject:
   - component: {fileID: 1571276860}
   - component: {fileID: 1571276859}
   m_Layer: 5
-  m_Name: Unit
+  m_Name: AttackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

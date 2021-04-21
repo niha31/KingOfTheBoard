@@ -11,7 +11,7 @@ public class TileMap : MonoBehaviour
     public TileType[] tileTypes;
     int[,] tiles;
     public int[,] tileOwnedBy;
-    Node[,] graph;
+    public Node[,] graph;
 
     public GameObject playerVisualprefab;
     public GameObject castleVisualPrefab;

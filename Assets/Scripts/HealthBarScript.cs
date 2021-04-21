@@ -5,43 +5,48 @@ using UnityEngine.UI;
 
 public class HealthBarScript : MonoBehaviour
 {
-    public Image healthBarImage;
+    public float health = 100;
+    float maxHealth = 100;
+    public GameObject bar;
+    public  GameObject barSprite;
+
     // Start is called before the first frame update
     void Start()
     {
-        healthBarImage = GetComponent<Image>();
+       
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
-    }
-
-    public void SetHealthBarValue(float value)
-    {
-        healthBarImage.fillAmount = value;
-        if (healthBarImage.fillAmount < 0.2f)
+        if(health >= 50)
         {
-            SetHealthBarColor(Color.red);
-        }
-        else if (healthBarImage.fillAmount < 0.4f)
-        {
-            SetHealthBarColor(Color.yellow);
+            SetColour(Color.green);
         }
         else
         {
-            SetHealthBarColor(Color.green);
+            SetColour(Color.yellow);
         }
+
+        if (health <= 0)
+        {
+            health = 0;
+        }
+        
+        float normalizedSize = health / maxHealth;
+        SetSize(normalizedSize);
     }
 
-    public float GetHealthBarValue()
+    
+
+    public void SetSize(float sizeNormalised)
     {
-        return healthBarImage.fillAmount;
+        bar.GetComponent<Transform>().localScale = new Vector3(sizeNormalised, 1.0f, 1.0f);
     }
 
-    public void SetHealthBarColor(Color healthColor)
+    public void SetColour(Color colour)
     {
-        healthBarImage.color = healthColor;
+        barSprite.GetComponent<SpriteRenderer>().color = colour;
     }
+
 }

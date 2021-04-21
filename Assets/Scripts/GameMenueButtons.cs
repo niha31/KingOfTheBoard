@@ -20,6 +20,11 @@ public class GameMenueButtons : MonoBehaviour
     public Button techTreeButton;
     public Button harvestButton;
 
+    public Button attackButton;
+    public Sprite transparentAttackButton;
+    public Sprite solidAttackButton;
+    public Sprite AttackbuttonActive;
+
     public Button yesButton;
     public Button noButton;
 
@@ -32,17 +37,35 @@ public class GameMenueButtons : MonoBehaviour
         mainMenuButton.onClick.AddListener(MainMenuButtonClicked);
         techTreeButton.onClick.AddListener(TechTreeButtonClicked);
         harvestButton.onClick.AddListener(HarvestButtonCLicked);
+
+        attackButton.onClick.AddListener(AttackButtonClicked);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        if(Players.AllPlayers[Players.CurrentPlayer].GetComponent<Attack>().attacking)
+        {
+            Debug.Log("Attacking");
+            attackButton.image.sprite = AttackbuttonActive;
+        }
+        else if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<Attack>().canAttact)
+        {
+            Debug.Log("Can Attack");
+            attackButton.image.sprite = solidAttackButton;
+        }
+        else
+        {
+            Debug.Log("cant Attack");
+            attackButton.image.sprite = transparentAttackButton;
+        }
     }
 
     void EndTurnButtonClicked()
     {
         Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().SetCanMove(true);
+        Players.AllPlayers[Players.CurrentPlayer].GetComponent<Attack>().hasAttacked = false;
         int current = Players.CurrentPlayer;
         Players.CurrentPlayer = current + 1;
 
@@ -128,6 +151,22 @@ public class GameMenueButtons : MonoBehaviour
             Debug.Log("Tile cant be harvested");
         }
 
+    }
+
+    void AttackButtonClicked()
+    {
+        if(Players.AllPlayers[Players.CurrentPlayer].GetComponent<Attack>().canAttact && !Players.AllPlayers[Players.CurrentPlayer].GetComponent<Attack>().hasAttacked)
+        {
+            if (!Players.AllPlayers[Players.CurrentPlayer].GetComponent<Attack>().attacking)
+            {
+                Players.AllPlayers[Players.CurrentPlayer].GetComponent<Attack>().attacking = true;
+            }
+            else
+            {
+                Players.AllPlayers[Players.CurrentPlayer].GetComponent<Attack>().attacking = false;
+            }
+        }
+               
     }
 
 }
