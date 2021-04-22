@@ -104,6 +104,5 @@ public class PlayerScript : MonoBehaviour
     public void TakeDamage(float damage)
     {
         gameObject.GetComponentInChildren<HealthBarScript>().health = gameObject.GetComponentInChildren<HealthBarScript>().health - damage;
-        Debug.Log(gameObject.GetComponentInChildren<HealthBarScript>().health);
     }
 }

@@ -52,25 +52,6 @@ public class TouchInputs : MonoBehaviour
                 }
             }
 
-            if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().GetCanMove())
-            {
-                gameStatus.text = "Player " + (Players.CurrentPlayer + 1) + "'s turn.";
-
-                //Wait(10);
-                
-                //gameStatus.text = " ";
-            }
-            else
-            {
-                //gameStatus.text = "Out of Moves";
-
-                //Wait(2);
-
-                gameStatus.text = " ";
-            }
-
-           
-
             SetGameCameraAtStart();
         }
     }

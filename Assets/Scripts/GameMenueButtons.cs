@@ -25,6 +25,8 @@ public class GameMenueButtons : MonoBehaviour
     public Sprite solidAttackButton;
     public Sprite AttackbuttonActive;
 
+    public Text textBox;
+
     public Button yesButton;
     public Button noButton;
 
@@ -47,17 +49,14 @@ public class GameMenueButtons : MonoBehaviour
     {
         if(Players.AllPlayers[Players.CurrentPlayer].GetComponent<Attack>().attacking)
         {
-            Debug.Log("Attacking");
             attackButton.image.sprite = AttackbuttonActive;
         }
         else if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<Attack>().canAttact)
         {
-            Debug.Log("Can Attack");
             attackButton.image.sprite = solidAttackButton;
         }
         else
         {
-            Debug.Log("cant Attack");
             attackButton.image.sprite = transparentAttackButton;
         }
     }
@@ -72,6 +71,9 @@ public class GameMenueButtons : MonoBehaviour
         this.gameObject.GetComponent<TouchInputs>().SetGameCameraAtStart();
 
         Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().CalculatePointsEarned();
+
+        textBox.GetComponent<TextScript>().ClearAllMessages();
+        textBox.GetComponent<TextScript>().AddMessage("Player " + (Players.CurrentPlayer + 1) + "'s turn", 1.5f, Color.black);
     }
 
     void MainMenuButtonClicked()
@@ -123,7 +125,6 @@ public class GameMenueButtons : MonoBehaviour
                 //check if player has tech needed to harvest
                 if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<Tech>().HaveTech(techNeeded))
                 {
-                    Debug.Log("Tech Found");
                     Vector2 pos;
                     pos.x = playerPos.x;
                     pos.y = playerPos.y;
@@ -136,19 +137,19 @@ public class GameMenueButtons : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("no tech");
+                    textBox.GetComponent<TextScript>().AddMessage("No Tech Found", 1.5f, Color.red);
                 }
             }
             else
             {
-                Debug.Log("Tile already owned");
+                textBox.GetComponent<TextScript>().AddMessage("Tile already Owned", 1.5f, Color.red);
             }
 
             
         }
         else
         {
-            Debug.Log("Tile cant be harvested");
+            textBox.GetComponent<TextScript>().AddMessage("Tile can't be harvested", 1.5f, Color.red);
         }
 
     }

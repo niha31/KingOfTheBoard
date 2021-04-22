@@ -21,7 +21,7 @@ public class FacebookScript : MonoBehaviour
 
     public void Share()
     {
-        FB.ShareLink(contentTitle:"Play King Of the Board!", contentDescription:"Obsessed with this new game!", callback:OnShare);
+        FB.ShareLink(contentURL:, contentTitle:"Play King Of the Board!", contentDescription:"Obsessed with this new game!", callback:OnShare);
     }
 
     private void OnShare(IShareResult result)

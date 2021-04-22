@@ -22,6 +22,8 @@ public class TechTree : MonoBehaviour
     public Sprite transparentButton;
     public Sprite solidButton;
 
+    public Text textBox;
+
     Color solidColour = new Color(255, 255, 255, 255);
     Color transparentCoulor = new Color(255, 255, 255, 80);
 
@@ -41,45 +43,37 @@ public class TechTree : MonoBehaviour
     {
         if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<Tech>().GetForestry())
         {
-            Debug.Log("transparancy 255");
             forestryButton.image.sprite = solidButton;
         }
         else
         {
-            Debug.Log("transparancy 80");
             forestryButton.image.sprite = transparentButton;
         }
 
         if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<Tech>().GetFarming() == true)
         {
-            Debug.Log("transparancy 255");
             farmingButton.image.sprite = solidButton;
         }
         else
         {
-            Debug.Log("transparancy 80");
             farmingButton.image.sprite = transparentButton;
         }
 
         if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<Tech>().GetMining() == true)
         {
-            Debug.Log("transparancy 255");
             mineButton.image.sprite = solidButton;
         }
         else
         {
-            Debug.Log("transparancy 80");
             mineButton.image.sprite = transparentButton;
         }
 
         if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<Tech>().GetHunting() == true)
         {
-            Debug.Log("transparancy 255");
             huntingButton.image.sprite = solidButton;
         }
         else
         {
-            Debug.Log("transparancy 80");
             huntingButton.image.sprite = transparentButton;
         }
     }
@@ -102,7 +96,7 @@ public class TechTree : MonoBehaviour
         }
         else if(Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().techPoints <= techPintsNeeded)
         {
-            Debug.Log("not enough tech points");  
+            textBox.GetComponent<TextScript>().AddMessage("Not enough tech points", 1.5f, Color.red);
         }
 
     }
@@ -116,7 +110,7 @@ public class TechTree : MonoBehaviour
         }
         else if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().techPoints <= techPintsNeeded)
         {
-            Debug.Log("not enough tech points");
+            textBox.GetComponent<TextScript>().AddMessage("Not enough tech points", 1.5f, Color.red);
         }
     }
 
@@ -130,7 +124,7 @@ public class TechTree : MonoBehaviour
         }
         else if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().techPoints <= techPintsNeeded)
         {
-            Debug.Log("not enough tech points");
+            textBox.GetComponent<TextScript>().AddMessage("Not enough tech points", 1.5f, Color.red);
         }
     }
 
@@ -144,7 +138,7 @@ public class TechTree : MonoBehaviour
         }
         else if (Players.AllPlayers[Players.CurrentPlayer].GetComponent<PlayerScript>().techPoints <= techPintsNeeded)
         {
-            Debug.Log("not enough tech points");
+            textBox.GetComponent<TextScript>().AddMessage("Not enough tech points", 1.5f, Color.red);
         }
     }
 }

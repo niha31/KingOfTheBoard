@@ -38,7 +38,6 @@ public class Attack : MonoBehaviour
             if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "Castle")
             {
                 hit.collider.gameObject.GetComponent<PlayerScript>().TakeDamage(attackDamage);
-                Debug.Log("Player Hit");
                 attacking = false;
                 hasAttacked = true;
             }
